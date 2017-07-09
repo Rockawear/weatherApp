@@ -5,16 +5,17 @@ var weatherConditions = new XMLHttpRequest();
 var weatherForecast = new XMLHttpRequest();
 var cObj;
 var fObj;
-//var conditionPath;
-//var forecastPath;
+var conditionPath;
+var forecastPath;
+var zip;
 
 function loadWeeather(){
-    var zip = document.getElementById('zip').value;
+    zip = document.getElementById('zip').value;
     if(zip === ''){
         zip = "02451";
     }
-   var conditionPath = "http://api.wunderground.com/api/a1d8ff37d069e0fe/conditions/q/" + zip + ".json";
-    var forecastPath = "http://api.wunderground.com/api/a1d8ff37d069e0fe/forecast/q/" + zip + ".json";
+   conditionPath = "http://api.wunderground.com/api/a1d8ff37d069e0fe/conditions/q/" + zip + ".json";
+    forecastPath = "http://api.wunderground.com/api/a1d8ff37d069e0fe/forecast/q/" + zip + ".json";
     // GET THE CONDITIONS
 weatherConditions.open('GET', conditionPath, true);
 weatherConditions.responseType = 'text';
@@ -45,13 +46,7 @@ weatherConditions.onload = function() {
 
 
 
-
-
-
-
-
-
-
+// Forecast
 weatherForecast.onload = function() {
 if (weatherForecast.status === 200){
 	fObj = JSON.parse(weatherForecast.responseText);
